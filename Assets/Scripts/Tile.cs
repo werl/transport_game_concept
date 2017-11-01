@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour {
 	public GameObject road;
 	public GameObject road_T;
 	public GameObject road_X;
+	public GameObject road_Turn;
 
 	private int type;
 	private int rotation;
@@ -25,14 +26,25 @@ public class Tile : MonoBehaviour {
 	}
 
 	public void ChangeTile() {
-		if (type == 0) {
+		switch (type) {
+		case 0:
 			ChangeTileInternal (road, 1);
-		} else if (type == 1) {
+			break;
+		case 1:
 			ChangeTileInternal (road_T, 2);
-		} else if (type == 2) {
+			break;
+		case 2:
 			ChangeTileInternal (road_X, 3);
-		} else if (type == 3) {
+			break;
+		case 3:
+			ChangeTileInternal (road_Turn, 4);
+			break;
+		case 4:
 			ChangeTileInternal (grass, 0);
+			break;
+		default:
+			Debug.Log (string.Format ("Tile type {0} is not implemented", type));
+			break;
 		}
 	}
 
@@ -56,9 +68,8 @@ public class Tile : MonoBehaviour {
 	}
 
 	public void rotate () {
-		if (type == 0) {
-			// NO-OP
-		} else if (type == 1) {
+		switch (type) {
+		case 1:
 			if (rotation == 0) {
 				transform.Rotate (new Vector3 (0, 90, 0));
 				Vector3 v = transform.position;
@@ -72,7 +83,9 @@ public class Tile : MonoBehaviour {
 				transform.position = v;
 				rotation = 0;
 			}
-		} else if (type == 2) {
+			break;
+		case 2:
+		case 4:
 			if (rotation == 0) {
 				transform.Rotate (new Vector3 (0, 90, 0));
 				Vector3 v = transform.position;
@@ -98,6 +111,10 @@ public class Tile : MonoBehaviour {
 				transform.position = v;
 				rotation = 0;
 			}
+			break;
+		default:
+			//NOOP
+			break;
 		}
 	}
 }
