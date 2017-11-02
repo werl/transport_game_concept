@@ -727,7 +727,7 @@ MonoBehaviour:
       axis: 0
       joystick: 0
     isExpanded: 1
-  _playerOneDefault: KeyboardAndMouse
+  _playerOneDefault: KeyboardAndMouse_Dvorak
   _playerTwoDefault: 
   _playerThreeDefault: 
   _playerFourDefault: 
