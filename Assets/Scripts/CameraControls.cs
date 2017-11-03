@@ -15,9 +15,9 @@ public class CameraControls : MonoBehaviour {
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.collider.GetComponent<Tile> ()) {
-					Tile t = hit.collider.GetComponent<Tile> ();
-					t.ChangeTile ();
+				TileHolder tileHolder = hit.collider.GetComponentInParent<TileHolder> ();
+				if (tileHolder) {
+					tileHolder.ChangeTileTo (GetRoadTilePrefab(), tileHolder.GetPosition());
 				}
 			}
 		} else if (InputManager.GetButtonDown ("Rotate")) {
@@ -26,9 +26,8 @@ public class CameraControls : MonoBehaviour {
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.collider.GetComponent<Tile> ()) {
-					Tile t = hit.collider.GetComponent<Tile> ();
-					t.rotate ();
+				if (hit.collider.GetComponent<TileBase> ()) {
+					
 				}
 			}
 		} 
@@ -40,6 +39,24 @@ public class CameraControls : MonoBehaviour {
 			float speed = InputManager.GetAxis ("Vertical") * speedModifier * Time.deltaTime;
 			transform.Translate (0, 0, speed);
 		}
+	}
+
+	private GameObject GetRoadTilePrefab() {
+		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.road;
+
+		if (o)
+			return o;
+		else
+			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
+	}
+
+	private GameObject GetGroundTilePrefab() {
+		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
+
+		if (o)
+			return o;
+		else
+			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
 	}
 
 }

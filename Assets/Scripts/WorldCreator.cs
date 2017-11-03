@@ -7,25 +7,45 @@ public class WorldCreator : MonoBehaviour {
 	public int width = 10;
 	public int length = 10;
 
-	public GameObject tile;
-
-	protected Dictionary<TileCoordinate, Tile> Tiles = new Dictionary<TileCoordinate, Tile>();
+	protected Dictionary<Vector2Int, TileHolder> Tiles = new Dictionary<Vector2Int, TileHolder>();
 
 	void Start () {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < length; j++) {
-				GameObject o = GameObject.Instantiate (tile);
-				o.name = "Tile " + i + ", " + j;
-				o.transform.parent = transform;
-				o.transform.SetPositionAndRotation (new Vector3 (i * 3, 0, j * 3), Quaternion.identity);
+				GameObject holder = GameObject.Instantiate (GetTileHolderPrefab(), transform, false);
+				holder.name = "Tile " + i + ", " + j;
+				holder.transform.SetPositionAndRotation (new Vector3 (i * 3, 0, j * 3), Quaternion.identity);
 
-				Tiles.Add (new TileCoordinate (i, j), o.GetComponent<Tile>());
+				TileHolder t = holder.GetComponent<TileHolder> ();
+				Vector2Int pos = new Vector2Int (i, j);
+				t.SetPosition (pos);
+				t.ChangeTileTo (GetGroundTilePrefab(), pos, false);
+
+				Tiles.Add (pos, t);
 			}
 		}
-		tile.gameObject.SetActive (false);
 	}
 	
 	void Update () {
 		
 	}
+
+	private GameObject GetTileHolderPrefab() {
+		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.TileHolder;
+
+		if (o)
+			return o;
+		else
+			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
+	}
+
+	private GameObject GetGroundTilePrefab() {
+		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
+
+		if (o)
+			return o;
+		else
+			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
+	}
+
 }

@@ -206,7 +206,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 10
   length: 10
-  tile: {fileID: 1260435609857850, guid: c1e0462e8b28d41fc962613793ba6e21, type: 2}
 --- !u!4 &240670695
 Transform:
   m_ObjectHideFlags: 0
@@ -343,6 +342,49 @@ Transform:
   m_Father: {fileID: 619797529}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!1 &1327143891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1327143893}
+  - component: {fileID: 1327143892}
+  m_Layer: 0
+  m_Name: Static Tiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1327143892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327143891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6588c9a4f5c04abcaf9f9f247b8a560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  road: {fileID: 1953706671827316, guid: 7a21da08638e7491f846acb5a6a1795c, type: 2}
+  grass: {fileID: 1933007619005724, guid: 9a43b57d3220742a59d06cc40476bf05, type: 2}
+  TileHolder: {fileID: 1593912481287268, guid: 8afb4434861fc4568b96c1dffa946437, type: 2}
+--- !u!4 &1327143893
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327143891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1613803, y: 2.3961473, z: -0.29779196}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516863219
 GameObject:
   m_ObjectHideFlags: 0
