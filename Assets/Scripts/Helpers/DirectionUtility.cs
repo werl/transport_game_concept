@@ -26,4 +26,19 @@ public class DirectionUtility {
 		}
 	}
 
+	public static Direction Rotate90 (Direction current) {
+		switch (current) {
+		case Direction.NORTH:
+			return Direction.EAST;
+		case Direction.EAST:
+			return Direction.SOUTH;
+		case Direction.SOUTH:
+			return Direction.WEST;
+		case Direction.EAST:
+			return Direction.NORTH;
+		default:
+			return Direction.NONE;
+		}
+	}
+
 }
