@@ -34,7 +34,7 @@ public class DirectionUtility {
 			return Direction.SOUTH;
 		case Direction.SOUTH:
 			return Direction.WEST;
-		case Direction.EAST:
+		case Direction.WEST:
 			return Direction.NORTH;
 		default:
 			return Direction.NONE;
