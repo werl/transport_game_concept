@@ -59,7 +59,7 @@ public abstract class TileBase : MonoBehaviour {
 		int numRotate = 0;
 		RotateNorth ();
 
-		switch(dir) {
+		switch (dir) {
 		case Direction.NORTH:
 			direction = Direction.NORTH;
 			numRotate = 0;
@@ -67,7 +67,7 @@ public abstract class TileBase : MonoBehaviour {
 		case Direction.EAST:
 			direction = Direction.EAST;
 			numRotate = 1;
-			break;
+			break;	
 		case Direction.SOUTH:
 			direction = Direction.SOUTH;
 			numRotate = 2;
@@ -84,4 +84,19 @@ public abstract class TileBase : MonoBehaviour {
 	}
 
 	public abstract bool CanEnterTile (Direction dir);
+
+	public abstract void OnNeighbourChanged(TileBase changedTile);
+
+	public void ChangeNeighbour() {
+		WorldCreator creator = GameObject.FindObjectOfType<WorldCreator> ();
+
+		Vector2Int[] vector2 = TileUtility.GetTilesAround (pos);
+
+		foreach (Vector2Int v2 in vector2) {
+			creator.GetTileForPosition (v2)?.SendToUpdateQueue (this);
+		}
+
+		creator.GetTileForPosition (this.pos)?.SendToUpdateQueue (this);
+	}
+
 }

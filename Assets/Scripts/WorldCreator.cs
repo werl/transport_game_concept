@@ -7,7 +7,7 @@ public class WorldCreator : MonoBehaviour {
 	public int width = 10;
 	public int length = 10;
 
-	protected Dictionary<Vector2Int, TileHolder> Tiles = new Dictionary<Vector2Int, TileHolder>();
+	private Dictionary<Vector2Int, TileHolder> Tiles = new Dictionary<Vector2Int, TileHolder>();
 
 	void Start () {
 		for (int i = 0; i < width; i++) {
@@ -19,7 +19,7 @@ public class WorldCreator : MonoBehaviour {
 				TileHolder t = holder.GetComponent<TileHolder> ();
 				Vector2Int pos = new Vector2Int (i, j);
 				t.SetPosition (pos);
-				t.ChangeTileTo (GetGroundTilePrefab(), pos, false);
+				t.ChangeTileTo (GetGroundTilePrefab(), pos, false, false);
 
 				Tiles.Add (pos, t);
 			}
@@ -28,6 +28,12 @@ public class WorldCreator : MonoBehaviour {
 	
 	void Update () {
 		
+	}
+
+	public TileHolder GetTileForPosition(Vector2Int position) {
+		TileHolder th = null;
+		Tiles.TryGetValue (position, out th);
+		return th;
 	}
 
 	private GameObject GetTileHolderPrefab() {

@@ -19,4 +19,9 @@ public class TileGrass : TileBase {
 	public override bool CanEnterTile (Direction dir) {
 		return false;
 	}
+
+	public override void OnNeighbourChanged (TileBase changedTile)
+	{
+		
+	}
 }
