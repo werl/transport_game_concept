@@ -19,6 +19,10 @@ public abstract class TileBase : MonoBehaviour {
 
 	protected abstract void UpdateInternal ();
 
+	public Direction GetDirection() {
+		return direction;
+	}
+
 	public void SetPosition(Vector2Int pos) {
 		this.pos = pos;
 	}
@@ -33,8 +37,7 @@ public abstract class TileBase : MonoBehaviour {
 		switch(direction) {
 		case Direction.NORTH:
 			direction = Direction.NORTH;
-			numRotate = 0;
-			break;
+			return;
 		case Direction.EAST:
 			direction = Direction.EAST;
 			numRotate = 3;
@@ -53,6 +56,7 @@ public abstract class TileBase : MonoBehaviour {
 		}
 
 		transform.Rotate (new Vector3 (0, numRotate * 90, 0));
+		ChangeNeighbour ();
 	}
 
 	public void RotateTo (Direction dir) {
@@ -81,6 +85,7 @@ public abstract class TileBase : MonoBehaviour {
 			break;
 		}
 		transform.Rotate (new Vector3 (0, numRotate * 90, 0));
+		ChangeNeighbour ();
 	}
 
 	public abstract bool CanEnterTile (Direction dir);
