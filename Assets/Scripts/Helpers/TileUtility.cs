@@ -18,6 +18,31 @@ public class TileUtility
 		return ret;
 	}
 
+	public static Direction DirectionOfTile(Vector2Int original, Vector2Int test) {
+		Vector2Int north = GetNorthV2 (original);
+		if (test == north)
+			return Direction.NORTH;
+		Vector2Int NEast = GetNorthEastV2 (original);
+		if (test == NEast)
+			return Direction.NORTH_EAST;
+		Vector2Int SEast = GetSouthEastV2 (original);
+		if (test == SEast)
+			return Direction.SOUTH_EAST;
+		Vector2Int south = GetSouthV2 (original);
+		if (test == south)
+			return Direction.SOUTH;
+		Vector2Int SWest = GetSouthWestV2 (original);
+		if (test == SWest)
+			return Direction.SOUTH_WEST;
+		Vector2Int west = GetWestV2 (original);
+		if (test == west)
+			return Direction.WEST;
+		Vector2Int NWest = GetNorthWestV2 (original);
+		if (test == NWest)
+			return Direction.NORTH_WEST;
+		return Direction.NONE;
+	}
+
 	public static Vector2Int GetNorthV2(Vector2Int input) {
 		return new Vector2Int (input.x, input.y + 1);
 	}
@@ -48,31 +73,6 @@ public class TileUtility
 
 	public static Vector2Int GetNorthWestV2(Vector2Int input) {
 		return new Vector2Int (input.x + 1, input.y + 1);
-	}
-
-	public static Direction DirectionOfTile(Vector2Int original, Vector2Int test) {
-		Vector2Int north = GetNorthV2 (original);
-		if (test == north)
-			return Direction.NORTH;
-		Vector2Int NEast = GetNorthEastV2 (original);
-		if (test == NEast)
-			return Direction.NORTH_EAST;
-		Vector2Int SEast = GetSouthEastV2 (original);
-		if (test == SEast)
-			return Direction.SOUTH_EAST;
-		Vector2Int south = GetSouthV2 (original);
-		if (test == south)
-			return Direction.SOUTH;
-		Vector2Int SWest = GetSouthWestV2 (original);
-		if (test == SWest)
-			return Direction.SOUTH_WEST;
-		Vector2Int west = GetWestV2 (original);
-		if (test == west)
-			return Direction.WEST;
-		Vector2Int NWest = GetNorthWestV2 (original);
-		if (test == NWest)
-			return Direction.NORTH_WEST;
-		return Direction.NONE;
 	}
 
 }
