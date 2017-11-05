@@ -7,6 +7,7 @@ public class TileHolder : MonoBehaviour {
 	private TileBase updateInitiator;
 
 	private TileBase currentTile;
+	[SerializeField]
 	private Vector2Int position;
 
 	private UpdateState uState = UpdateState.FINISHED;

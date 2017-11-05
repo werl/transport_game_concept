@@ -26,8 +26,10 @@ public class CameraControls : MonoBehaviour {
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.collider.GetComponent<TileBase> ()) {
-					
+				TileBase tile = hit.collider.GetComponentInParent<TileBase> ();
+				if (tile) {
+					//tile.RotateTo (DirectionUtility.Rotate90(tile.GetDirection()));
+					//tile.ChangeNeighbour ();
 				}
 			}
 		} 

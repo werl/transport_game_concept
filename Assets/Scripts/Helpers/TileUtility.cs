@@ -48,15 +48,15 @@ public class TileUtility
 	}
 
 	public static Vector2Int GetNorthEastV2(Vector2Int input) {
-		return new Vector2Int (input.x - 1, input.y + 1);
+		return new Vector2Int (input.x + 1, input.y + 1);
 	}
 
 	public static Vector2Int GetEastV2(Vector2Int input) {
-		return new Vector2Int (input.x - 1, input.y);
+		return new Vector2Int (input.x + 1, input.y);
 	}
 
 	public static Vector2Int GetSouthEastV2(Vector2Int input) {
-		return new Vector2Int (input.x - 1, input.y - 1);
+		return new Vector2Int (input.x + 1, input.y - 1);
 	}
 
 	public static Vector2Int GetSouthV2(Vector2Int input) {
@@ -64,15 +64,15 @@ public class TileUtility
 	}
 
 	public static Vector2Int GetSouthWestV2(Vector2Int input) {
-		return new Vector2Int (input.x + 1, input.y - 1);
+		return new Vector2Int (input.x - 1, input.y - 1);
 	}
 
 	public static Vector2Int GetWestV2(Vector2Int input) {
-		return new Vector2Int (input.x + 1, input.y);
+		return new Vector2Int (input.x - 1, input.y);
 	}
 
 	public static Vector2Int GetNorthWestV2(Vector2Int input) {
-		return new Vector2Int (input.x + 1, input.y + 1);
+		return new Vector2Int (input.x - 1, input.y + 1);
 	}
 
 }
