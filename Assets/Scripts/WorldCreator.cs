@@ -7,9 +7,15 @@ public class WorldCreator : MonoBehaviour {
 	public int width = 10;
 	public int length = 10;
 
+	private GameObject groundTilePrefab;
+	private GameObject tileHolderPrefab;
+
 	private Dictionary<Vector2Int, TileHolder> Tiles = new Dictionary<Vector2Int, TileHolder>();
 
 	void Start () {
+		groundTilePrefab = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
+		tileHolderPrefab = GameObject.FindObjectOfType<StaticTiles> ()?.TileHolder;
+
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < length; y++) {
 				GameObject holder = GameObject.Instantiate (GetTileHolderPrefab(), transform, false);
@@ -26,28 +32,10 @@ public class WorldCreator : MonoBehaviour {
 		}
 	}
 
-	public TileHolder GetTileForPosition(Vector2Int position) {
+	public TileHolder GetTileForPosition (Vector2Int position) {
 		TileHolder th = null;
 		Tiles.TryGetValue (position, out th);
 		return th;
-	}
-
-	private GameObject GetTileHolderPrefab() {
-		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.TileHolder;
-
-		if (o)
-			return o;
-		else
-			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
-	}
-
-	private GameObject GetGroundTilePrefab() {
-		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
-
-		if (o)
-			return o;
-		else
-			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
 	}
 
 }
