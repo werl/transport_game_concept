@@ -165,17 +165,17 @@ public class TileRoad : TileBase {
 				if (bWest) {
 					if (bEast) {
 						ChangePathType (PathType.INTERSECTION_X);
-						RotateNorth (false);
+						RotateTo (Direction.NORTH, false);
 					} else {
 						ChangePathType (PathType.INTERSECTION_T);
 						RotateTo (Direction.SOUTH, false);
 					}
 				} else if (bEast) {
 					ChangePathType (PathType.INTERSECTION_T);
-					RotateNorth (false);
+					RotateTo (Direction.NORTH, false);
 				} else {
 					ChangePathType (PathType.STRAIGHT);
-					RotateNorth (false);
+					RotateTo (Direction.NORTH, false);
 				}
 			} else if (bEast) {
 				if (bWest) {
@@ -183,14 +183,14 @@ public class TileRoad : TileBase {
 					RotateTo (Direction.WEST, false);
 				} else {
 					ChangePathType (PathType.CURVE_90);
-					RotateNorth (false);
+					RotateTo (Direction.NORTH, false);
 				}
 			} else if (bWest) {
 				ChangePathType (PathType.CURVE_90);
 				RotateTo (Direction.WEST, false);
 			} else {
 				ChangePathType (PathType.SINGLE);
-				RotateNorth (false);
+				RotateTo (Direction.NORTH, false);
 			}
 		} else if (bSouth) {
 			if (bEast) {

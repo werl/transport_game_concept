@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class TileBase : MonoBehaviour {
 
 	protected Vector2Int pos;
+	[SerializeField]
 	protected Direction direction;
 
 	void Start () {

@@ -6,6 +6,14 @@ using TeamUtility.IO;
 public class CameraControls : MonoBehaviour {
 
 	public float speedModifier = 10f;
+
+	private GameObject roadTilePrefab;
+	private GameObject groundTilePrefab;
+
+	void Start() {
+		roadTilePrefab = GameObject.FindObjectOfType<StaticTiles> ()?.road;
+		groundTilePrefab = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -16,8 +24,8 @@ public class CameraControls : MonoBehaviour {
 
 			if (Physics.Raycast (ray, out hit)) {
 				TileHolder tileHolder = hit.collider.GetComponentInParent<TileHolder> ();
-				if (tileHolder) {
-					tileHolder.ChangeTileTo (GetRoadTilePrefab(), tileHolder.GetPosition());
+				if (tileHolder && !(tileHolder.GetCurrentTile() is TileRoad)) {
+					tileHolder.ChangeTileTo (roadTilePrefab, tileHolder.GetPosition());
 				}
 			}
 		} else if (InputManager.GetButtonDown ("Rotate")) {
@@ -41,24 +49,6 @@ public class CameraControls : MonoBehaviour {
 			float speed = InputManager.GetAxis ("Vertical") * speedModifier * Time.deltaTime;
 			transform.Translate (0, 0, speed);
 		}
-	}
-
-	private GameObject GetRoadTilePrefab() {
-		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.road;
-
-		if (o)
-			return o;
-		else
-			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
-	}
-
-	private GameObject GetGroundTilePrefab() {
-		GameObject o = GameObject.FindObjectOfType<StaticTiles> ()?.grass;
-
-		if (o)
-			return o;
-		else
-			throw new System.NullReferenceException ("Couldn't find StaticTiles object");
 	}
 
 }
