@@ -18,14 +18,14 @@ public class WorldCreator : MonoBehaviour {
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < length; y++) {
-				GameObject holder = GameObject.Instantiate (GetTileHolderPrefab(), transform, false);
+				GameObject holder = GameObject.Instantiate (tileHolderPrefab, transform, false);
 				holder.name = "Tile " + x + ", " + y;
 				holder.transform.SetPositionAndRotation (new Vector3 (x * 3, 0, y * 3), Quaternion.identity);
 
 				TileHolder t = holder.GetComponent<TileHolder> ();
 				Vector2Int pos = new Vector2Int (x, y);
 				t.SetPosition (pos);
-				t.ChangeTileTo (GetGroundTilePrefab(), pos, false, false);
+				t.ChangeTileTo (groundTilePrefab, pos, false, false);
 
 				Tiles.Add (pos, t);
 			}
