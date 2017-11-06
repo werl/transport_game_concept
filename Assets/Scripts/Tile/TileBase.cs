@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class TileBase : MonoBehaviour {
 
 	protected Vector2Int pos;
+	[SerializeField]
 	protected Direction direction;
 
 	void Start () {
@@ -19,6 +20,10 @@ public abstract class TileBase : MonoBehaviour {
 
 	protected abstract void UpdateInternal ();
 
+	public Direction GetDirection() {
+		return direction;
+	}
+
 	public void SetPosition(Vector2Int pos) {
 		this.pos = pos;
 	}
@@ -27,14 +32,13 @@ public abstract class TileBase : MonoBehaviour {
 		return pos;
 	}
 
-	public void RotateNorth () {
+	public void RotateNorth (bool update = true) {
 		int numRotate = 0;
 
 		switch(direction) {
 		case Direction.NORTH:
 			direction = Direction.NORTH;
-			numRotate = 0;
-			break;
+			return;
 		case Direction.EAST:
 			direction = Direction.EAST;
 			numRotate = 3;
@@ -53,11 +57,13 @@ public abstract class TileBase : MonoBehaviour {
 		}
 
 		transform.Rotate (new Vector3 (0, numRotate * 90, 0));
+		if (update)
+			ChangeNeighbour ();
 	}
 
-	public void RotateTo (Direction dir) {
+	public void RotateTo (Direction dir, bool update = true) {
 		int numRotate = 0;
-		RotateNorth ();
+		RotateNorth (update);
 
 		switch (dir) {
 		case Direction.NORTH:
@@ -80,12 +86,15 @@ public abstract class TileBase : MonoBehaviour {
 			Debug.LogError ("Direction not implemented");
 			break;
 		}
+		
 		transform.Rotate (new Vector3 (0, numRotate * 90, 0));
+		if (update)
+			ChangeNeighbour ();
 	}
 
 	public abstract bool CanEnterTile (Direction dir);
 
-	public abstract void OnNeighbourChanged(TileBase changedTile);
+	public abstract void OnNeighbourChanged();
 
 	public void ChangeNeighbour() {
 		WorldCreator creator = GameObject.FindObjectOfType<WorldCreator> ();
@@ -96,7 +105,7 @@ public abstract class TileBase : MonoBehaviour {
 			creator.GetTileForPosition (v2)?.SendToUpdateQueue (this);
 		}
 
-		creator.GetTileForPosition (this.pos)?.SendToUpdateQueue (this);
+		creator.GetTileForPosition (this.pos).SendToUpdateQueue (this);
 	}
 
 }

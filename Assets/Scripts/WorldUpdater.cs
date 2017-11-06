@@ -25,7 +25,7 @@ public class WorldUpdater : MonoBehaviour {
 		while (tilesToUpdate.Count > 0) {
 			TileHolder th = tilesToUpdate.Dequeue ();
 			th.SetUpdateState (UpdateState.STARTED);
-			th.GetCurrentTile ().OnNeighbourChanged (th.GetUpdateInitiator());
+			th.GetCurrentTile ().OnNeighbourChanged ();
 			th.FinishUpdate ();
 			th.SetUpdateState (UpdateState.FINISHED);
 		}

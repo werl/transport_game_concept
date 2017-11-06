@@ -20,7 +20,7 @@ public class TileGrass : TileBase {
 		return false;
 	}
 
-	public override void OnNeighbourChanged (TileBase changedTile)
+	public override void OnNeighbourChanged ()
 	{
 		
 	}
