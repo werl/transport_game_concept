@@ -21,7 +21,7 @@ public class WorldUpdater : MonoBehaviour {
 			FixedUpdateTiles ();
 	}
 
-	private void FixedUpdateTiles() {
+	private void FixedUpdateTiles () {
 		while (tilesToUpdate.Count > 0) {
 			TileHolder th = tilesToUpdate.Dequeue ();
 			th.SetUpdateState (UpdateState.STARTED);
@@ -31,7 +31,7 @@ public class WorldUpdater : MonoBehaviour {
 		}
 	}
 
-	public void QueueTileForUpdate(TileHolder tileHloder) {
+	public void QueueTileForUpdate (TileHolder tileHloder) {
 		tilesToUpdate.Enqueue (tileHloder);
 	}
 }

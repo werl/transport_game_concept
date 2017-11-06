@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TileUtility
 {
-	public static Vector2Int[] GetTilesAround(Vector2Int position) {
+	public static Vector2Int[] GetTilesAround (Vector2Int position) {
 		Vector2Int[] ret = new Vector2Int[8];
 
 		ret [0] = GetNorthV2 (position);
@@ -18,7 +18,7 @@ public class TileUtility
 		return ret;
 	}
 
-	public static Direction DirectionOfTile(Vector2Int original, Vector2Int test) {
+	public static Direction DirectionOfTile (Vector2Int original, Vector2Int test) {
 		Vector2Int north = GetNorthV2 (original);
 		if (test == north)
 			return Direction.NORTH;
@@ -43,35 +43,35 @@ public class TileUtility
 		return Direction.NONE;
 	}
 
-	public static Vector2Int GetNorthV2(Vector2Int input) {
+	public static Vector2Int GetNorthV2 (Vector2Int input) {
 		return new Vector2Int (input.x, input.y + 1);
 	}
 
-	public static Vector2Int GetNorthEastV2(Vector2Int input) {
+	public static Vector2Int GetNorthEastV2 (Vector2Int input) {
 		return new Vector2Int (input.x + 1, input.y + 1);
 	}
 
-	public static Vector2Int GetEastV2(Vector2Int input) {
+	public static Vector2Int GetEastV2 (Vector2Int input) {
 		return new Vector2Int (input.x + 1, input.y);
 	}
 
-	public static Vector2Int GetSouthEastV2(Vector2Int input) {
+	public static Vector2Int GetSouthEastV2 (Vector2Int input) {
 		return new Vector2Int (input.x + 1, input.y - 1);
 	}
 
-	public static Vector2Int GetSouthV2(Vector2Int input) {
+	public static Vector2Int GetSouthV2 (Vector2Int input) {
 		return new Vector2Int (input.x, input.y - 1);
 	}
 
-	public static Vector2Int GetSouthWestV2(Vector2Int input) {
+	public static Vector2Int GetSouthWestV2 (Vector2Int input) {
 		return new Vector2Int (input.x - 1, input.y - 1);
 	}
 
-	public static Vector2Int GetWestV2(Vector2Int input) {
+	public static Vector2Int GetWestV2 (Vector2Int input) {
 		return new Vector2Int (input.x - 1, input.y);
 	}
 
-	public static Vector2Int GetNorthWestV2(Vector2Int input) {
+	public static Vector2Int GetNorthWestV2 (Vector2Int input) {
 		return new Vector2Int (input.x - 1, input.y + 1);
 	}
 
